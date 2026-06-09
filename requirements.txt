@@ -1,3 +1,7 @@
-requests
-python-telegram-bot
-flask
+requests>=2.32.0
+python-telegram-bot>=22.0
+flask>=3.0.0
+python-dotenv>=1.0.0
+apscheduler>=3.10.0
+SQLAlchemy>=2.0.0
+pytest>=8.0.0
