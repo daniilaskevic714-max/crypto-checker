@@ -1,29 +1,40 @@
 # Crypto Checker
 
-Полноценный крипто-проект на Python.
+Современный крипто-проект на Python с Telegram-ботом и веб-интерфейсом.
 
 ## Возможности
+- Получение курсов криптовалют
 - Telegram-бот
-- Веб-интерфейс
-- Проверка курсов через CoinGecko
+- Веб-сайт
 - Подписки и уведомления
-- SQLite для хранения данных
+- SQLite
 
 ## Установка
-1. Клонируйте репозиторий
-2. Установите зависимости
-3. Настройте BOT_TOKEN
-4. Запустите main.py
+```bash
+git clone <repo>
+cd crypto-checker
+pip install -r requirements.txt
+```
 
-## Команды бота
-/price bitcoin
-/subscribe bitcoin 100000
-/subscriptions
-/unsubscribe bitcoin
+## Запуск
+```bash
+python main.py
+```
 
-## Планы
+## Команды
+- /price bitcoin
+- /subscribe bitcoin 100000
+- /subscriptions
+- /unsubscribe bitcoin
+
+## Архитектура
+- main.py
+- subscriptions.py
+- templates/
+
+## Планы развития
 - Flask
+- Docker
 - Графики
 - Авторизация
-- Docker
 - GitHub Actions
