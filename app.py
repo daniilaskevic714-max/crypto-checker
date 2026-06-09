@@ -11,10 +11,7 @@ def home():
 
 @app.route('/api/price/<coin>')
 def price(coin):
-    params = {
-        'ids': coin,
-        'vs_currencies': 'usd'
-    }
+    params = {'ids': coin, 'vs_currencies': 'usd'}
     r = requests.get(COINGECKO_URL, params=params).json()
     return jsonify(r)
 
@@ -24,6 +21,10 @@ def price_query():
     params = {'ids': coin, 'vs_currencies': 'usd'}
     r = requests.get(COINGECKO_URL, params=params).json()
     return jsonify(r)
+
+@app.route('/api/health')
+def health():
+    return jsonify({'status': 'ok', 'service': 'crypto-checker'})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
