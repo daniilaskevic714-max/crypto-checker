@@ -1,163 +1,183 @@
-# Crypto Checker 🚀
+# Crypto Checker 🚀 (Big Tech SaaS Edition)
 
-Полноценный production-level крипто-сервис на Python.
+Полноценная cloud-native SaaS платформа для отслеживания криптовалют с уровнем архитектуры как у fintech и биржевых систем.
+
+---
 
 ## 📌 Описание
-Crypto Checker — это многофункциональный сервис для отслеживания криптовалют, включающий:
 
-- 🤖 Telegram-бот для уведомлений
-- 🌐 Web API (Flask)
-- 📊 REST API для курсов криптовалют
-- 🔔 Система подписок на цену
-- 🐳 Docker инфраструктура
+Crypto Checker — это распределённый крипто-сервис с:
+
+- 🤖 Telegram bot (уведомления и подписки)
+- 🌐 Flask API + Web interface
+- 🔐 JWT authentication (SaaS users)
+- 🧠 Rate limiting + anti-bot protection
+- 🐳 Docker production stack
+- ☸️ Kubernetes deployment ready
+- 🌍 Cloudflare WAF integration
 - 🔐 HTTPS (Nginx + Let's Encrypt)
-- ⚡ Redis + PostgreSQL (готово к масштабированию)
+- ⚡ Redis caching layer
+- 🗄 PostgreSQL ready architecture
 
 ---
 
-## 🏗 Архитектура проекта
+## 🏗 BIG TECH ARCHITECTURE
 
 ```
-Internet
-   ↓
-Nginx (HTTPS / SSL termination)
-   ↓
-Flask App (API + Web)
-   ↓
+User
+  ↓
+Cloudflare (WAF + DDoS + Bot Protection)
+  ↓
+Nginx Ingress (TLS + Reverse Proxy)
+  ↓
+Kubernetes Service
+  ↓
+Flask App (3+ replicas)
+  ↓
+Redis Cache / PostgreSQL DB
+  ↓
 CoinGecko API
-   ↓
-Redis / PostgreSQL (future scaling)
 ```
 
 ---
 
-## 🚀 Быстрый старт
+## 🔐 Security Stack (Enterprise Level)
 
-### 1. Клонирование
+- 🛡 Cloudflare WAF rules (bot filtering, geo blocking, API protection)
+- 🚫 Fail2Ban intrusion prevention
+- ⚡ Nginx rate limiting
+- 🔐 JWT authentication layer
+- 🧱 Kubernetes network isolation
+- 🌍 Origin IP protection (no direct server access)
+
+---
+
+## 🚀 Quick Start (Dev)
+
 ```bash
 git clone <repo>
 cd crypto-checker
-```
-
-### 2. Установка зависимостей
-```bash
 pip install -r requirements.txt
-```
-
-### 3. Запуск (dev)
-```bash
 python run.py
 ```
 
 ---
 
-## 🐳 Production запуск (HTTPS + Nginx + Docker)
+## 🐳 Production Deployment (Docker + HTTPS)
 
-### 🔧 Сборка
 ```bash
 docker compose -f docker-compose.prod.yml up -d --build
-```
-
-### 🔐 Получение SSL сертификата
-```bash
 bash init-letsencrypt.sh
 ```
 
-### 🌍 Доступ
+Access:
 ```
 https://your-domain.com
 ```
 
 ---
 
-## 📡 API endpoints
+## ☸️ Kubernetes Deployment (Big Tech Mode)
 
-### Получить цену
+```bash
+kubectl apply -f k8s/deployment.yaml
+kubectl apply -f k8s/service.yaml
+kubectl apply -f k8s/ingress.yaml
+```
+
+---
+
+## 📡 API Endpoints
+
+### Public
 ```
 GET /api/price/bitcoin
-```
-
-или
-```
 GET /api/price?coin=bitcoin
 ```
 
-### Пример ответа
-```json
-{
-  "bitcoin": {
-    "usd": 105000
-  }
-}
+### Auth Required (JWT)
+```
+Authorization: Bearer <token>
 ```
 
 ---
 
-## 🤖 Telegram бот команды
+## 🤖 Telegram Bot Commands
 
-- `/price bitcoin` — цена монеты
-- `/subscribe bitcoin 100000` — подписка на цену
-- `/subscriptions` — список подписок
-- `/unsubscribe bitcoin` — удалить подписку
-
----
-
-## 🐳 Docker инфраструктура
-
-Включает:
-- Flask app
-- Nginx reverse proxy
-- Certbot (Let's Encrypt SSL)
-- Redis (кэш)
-- PostgreSQL (данные)
+- /price bitcoin
+- /subscribe bitcoin 100000
+- /unsubscribe bitcoin
+- /subscriptions
 
 ---
 
-## 🔐 HTTPS (Production)
+## 🔐 Authentication (SaaS Layer)
 
-Используется:
-- Nginx reverse proxy
-- Let's Encrypt SSL certificates
-- Automatic HTTP → HTTPS redirect
-
----
-
-## ⚙️ Конфигурация
-
-Создай `.env`:
-```
-BOT_TOKEN=your_token_here
-DATABASE_URL=sqlite:///crypto.db
-```
+- JWT tokens (HS256)
+- User registration & login
+- Protected API routes
+- Token expiration (24h)
 
 ---
 
-## 📁 Структура проекта
+## ☁️ Cloudflare Integration
+
+- WAF (Web Application Firewall)
+- Bot Fight Mode
+- Rate limiting at edge
+- DDoS protection (L3-L7)
+- Origin IP hiding
+
+---
+
+## ⚡ Performance Layer
+
+- Redis caching (price requests)
+- Horizontal scaling (Kubernetes replicas)
+- Load balancing via Ingress
+
+---
+
+## 📁 Project Structure
+
 ```
 app.py
 run.py
+auth.py
 subscriptions.py
-templates/
 nginx/
+cloudflare/
+k8s/
 docker-compose.prod.yml
 init-letsencrypt.sh
 ```
 
 ---
 
-## 🛣 Roadmap
+## 🛣 Roadmap (SaaS Evolution)
 
-- [ ] WebSocket live цены
-- [ ] React frontend
-- [ ] User accounts
-- [ ] Payment system
+- [x] JWT Authentication
+- [x] Kubernetes deployment
+- [x] Cloudflare WAF integration
+- [ ] WebSocket real-time pricing
+- [ ] Stripe payments (monetization)
+- [ ] React frontend dashboard
 - [ ] AI trading signals
-- [ ] Kubernetes deployment
+- [ ] Multi-region deployment
+
+---
+
+## 🧠 Observability (Future)
+
+- Prometheus metrics
+- Grafana dashboards
+- Centralized logging (Loki)
+- Alerting system
 
 ---
 
 ## 🛡 License
-Apache 2.0 — свободное использование с обязательным сохранением авторства.
+Apache 2.0 — with attribution requirement.
 
 ---
 
