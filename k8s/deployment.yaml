@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crypto-checker
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: crypto-checker
+  template:
+    metadata:
+      labels:
+        app: crypto-checker
+    spec:
+      containers:
+        - name: app
+          image: crypto-checker:latest
+          ports:
+            - containerPort: 5000
+          env:
+            - name: BOT_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: crypto-secrets
+                  key: BOT_TOKEN
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
