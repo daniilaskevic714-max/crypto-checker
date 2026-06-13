@@ -1,0 +1,1 @@
+{"name":"crypto-checker","displayName":"Crypto Checker","version":"0.1.0","engines":{"vscode":"^1.80.0"},"activationEvents":["onCommand:cryptoChecker.showPrices"],"main":"./dist/extension.js","contributes":{"commands":[{"command":"cryptoChecker.showPrices","title":"Crypto Checker: Show Prices"}]}}
